@@ -15,13 +15,20 @@ const TaskManager = () => {
       return task.id == id ? {...task, completed: !task.completed} : task
     }))
   }
+
+  let deleteTask = (id) => {
+    let filteredTask = tasks.filter((task) => {
+      return task.id != id
+    })
+    setTasks(filteredTask)
+  }
     
   return (
     <>
       <section id='task-container'>
         <h1 id='title'>TASK MANAGER</h1>
         <AddTask save={saveTask} />
-        <TaskList tasks={tasks} handleTask={handleTask} />
+        <TaskList tasks={tasks} handleTask={handleTask} deleteTask={deleteTask} />
       </section>
     </>
   );
